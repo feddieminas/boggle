@@ -67,7 +67,7 @@ class TestBoggle(unittest.TestCase):
         neighbours = boggle.all_grid_neighbours(grid) #get all neighbours of a grid
         self.assertEqual(len(neighbours), len(grid)) #assert the correct length of neighbours dict
         for pos in grid: #iterate through the positions in the grid for each position
-            others = list(grid)
+            others = list(grid) # create a new list from the dictionary's keys
             others.remove(pos) # thus we create the full grid but remove the pos to show the neighbours only
             self.assertListEqual(sorted(neighbours[pos]), sorted(others)) #the positions of the neighbours are the positions being checked
             #it gives us the confidence that our neighbours data structure is correct    
@@ -90,7 +90,11 @@ class TestBoggle(unittest.TestCase):
         twoLetterWord = 'AB'
         threeLetterWord = 'ABC'
         notThereWord = 'EEE'
-        dictionary = [twoLetterWord, threeLetterWord, notThereWord]
+        
+        #dictionary = [twoLetterWord, threeLetterWord, notThereWord]
+        fullwords = [twoLetterWord, threeLetterWord, notThereWord]
+        stems = ['A', 'AB', 'E', 'EE'] # a fix not the best one is to include the stems of the test word 
+        dictionary = fullwords, stems
         
         foundWords = boggle.search(grid, dictionary)
         
